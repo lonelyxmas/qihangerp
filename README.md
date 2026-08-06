@@ -88,15 +88,14 @@
 
 ## 📦 启航电商开源生态
 
-启航电商旗下开源项目矩阵，所有项目共同指向统一商业版：
+启航电商旗下开源项目矩阵：
 
-| 项目 | 定位 | Gitee | GitHub |
-|:----|:----|:-----|:-------|
-| [启航电商ERP](https://gitee.com/qiliping/qihang-ecom-erp-open) | 电商业务中台底座（微服务） | [Gitee](https://gitee.com/qiliping/qihang-ecom-erp-open) | [GitHub](https://github.com/zeasin/qihang-ecom-erp-open) |
-| **OMS 订单中台 ⬅** | **轻量级订单管理** | [Gitee](https://gitee.com/qiliping/qihang-oms) | [GitHub](https://github.com/zeasin/qihang-ecom-oms) |
-| [库存账簿](https://gitee.com/qiliping/qihang-stock-books) | 极简进销存 | [Gitee](https://gitee.com/qiliping/qihang-stock-books) | [GitHub](https://github.com/zeasin/qihang-stock-books) |
-| [跨境ERP](https://gitee.com/qiliping/qihang-cb-erp) | 跨境电商 | [Gitee](https://gitee.com/qiliping/qihang-cb-erp) | [GitHub](https://github.com/zeasin/qihang-cb-erp) |
-| [SCM 供应链](https://gitee.com/qiliping/qihangerp-scm) | 多商户多供应商系统（已合并到商业版） | [Gitee](https://gitee.com/qiliping/qihangerp-scm) | [GitHub](https://github.com/zeasin/qihangerp-scm) |
+| 项目               | 定位                                     | Gitee | GitHub                                                  |
+|:-------------------|:-----------------------------------------|:-----|:--------------------------------------------------------|
+| 启航电商ERP  | **电商业务AI底座（单体应用，v4.1）**     | [Gitee](https://gitee.com/qiliping/qihang-erp-open) | [GitHub](https://github.com/zeasin/qihang-erp-open)     |
+| OMS 订单中台       | 轻量级订单管理                           | [Gitee](https://gitee.com/qiliping/qihang-oms) | [GitHub](https://github.com/zeasin/qihang-oms)          |
+| 启航零售ERP       | 线下零售管理平台                         | [Gitee](https://gitee.com/qiliping/qihang-retail) | [GitHub](https://github.com/zeasin/qihang-retail)          |
+| **启航跨境电商ERP ⬅**   | 跨境电商专用版       | [Gitee](https://gitee.com/qiliping/qihang-cb-erp) | [GitHub](https://github.com/zeasin/qihang-cb-erp)                                          |
 
 ## 💼 商业版
 
