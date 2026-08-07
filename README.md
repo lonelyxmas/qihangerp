@@ -57,7 +57,7 @@
 ## 三、如何使用？
 ### 3.1、开发环境配置
 + MySQL数据库创建
-  + 运行MySQL脚本`docs\sql\qihangerp-cbe.sql`导入数据到主库`qihangerp-cbe`
+  + 运行MySQL脚本`docs\sql\qihang-cb-erp.sql`导入数据到主库`qihang-cb-erp`
 
 
 + 启动Redis
