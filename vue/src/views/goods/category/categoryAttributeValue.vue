@@ -40,8 +40,8 @@
 <!--        />-->
 <!--      </el-form-item>-->
 <!--      <el-form-item>-->
-<!--        <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>-->
-<!--        <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>-->
+<!--        <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">{{ $t('list.search') }}</el-button>-->
+<!--        <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">{{ $t('list.reset') }}</el-button>-->
 <!--      </el-form-item>-->
     </el-form>
 
@@ -54,7 +54,7 @@
           size="mini"
           @click="handleAdd"
           v-hasPermi="['goods:categoryAttributeValue:add']"
-        >新增</el-button>
+        >{{$t('list.create')}}</el-button>
       </el-col>
 <!--      <el-col :span="1.5">-->
 <!--        <el-button-->
@@ -93,18 +93,18 @@
 
     <el-table v-loading="loading" :data="categoryAttributeValueList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="属性值id" align="center" prop="id" />
-      <el-table-column label="属性id" align="center" prop="categoryAttributeId" />
-      <el-table-column label="属性值文本" align="center" prop="value" />
+      <el-table-column label="属性值Id" align="center" prop="attributeValueId" />
+      <el-table-column label="属性Id" align="center" prop="attributeId" />
+      <el-table-column label="属性值" align="center" prop="attributeValue" />
       <el-table-column label="生成SKU的编码" align="center" prop="skuCode" />
-      <el-table-column label="排序" align="center" prop="orderNum" />
+      <el-table-column label="排序" align="center" prop="sort" />
       <el-table-column label="是否删除" align="center" prop="isDelete" >
         <template slot-scope="scope">
           <el-tag v-if="scope.row.isDelete === 1" style="margin-bottom: 6px;">是</el-tag>
           <el-tag v-if="scope.row.isDelete === 0" style="margin-bottom: 6px;">否</el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column :label="$t('menu.operate')" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
             size="mini"
@@ -152,8 +152,8 @@
 <!--        </el-form-item>-->
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="submitForm">确 定</el-button>
-        <el-button @click="cancel">取 消</el-button>
+        <el-button type="primary" @click="submitForm">{{$t('list.submit')}}</el-button>
+        <el-button @click="cancel">{{$t('list.cancel')}}</el-button>
       </div>
     </el-dialog>
   </div>
@@ -174,7 +174,7 @@ export default {
       single: true,
       // 非多个禁用
       multiple: true,
-      // 显示搜索条件
+      //
       showSearch: true,
       // 总条数
       total: 0,
@@ -217,16 +217,16 @@ export default {
       this.loading = true;
       listCategoryAttributeValue(this.queryParams).then(response => {
         this.categoryAttributeValueList = response.rows;
-        this.total = response.total;
+        // this.total = response.total;
         this.loading = false;
       });
     },
-    // 取消按钮
+
     cancel() {
       this.open = false;
       this.reset();
     },
-    // 表单重置
+    //
     reset() {
       this.form = {
         id: null,
@@ -238,12 +238,12 @@ export default {
       };
       this.resetForm("form");
     },
-    /** 搜索按钮操作 */
+    /**  */
     handleQuery() {
       this.queryParams.pageNum = 1;
       this.getList();
     },
-    /** 重置按钮操作 */
+    /**  */
     resetQuery() {
       this.resetForm("queryForm");
       this.handleQuery();
@@ -254,13 +254,13 @@ export default {
       this.single = selection.length!==1
       this.multiple = !selection.length
     },
-    /** 新增按钮操作 */
+
     handleAdd() {
       this.reset();
       this.open = true;
       this.title = "添加商品分类属性值";
     },
-    /** 修改按钮操作 */
+
     handleUpdate(row) {
       this.reset();
       const id = row.id || this.ids
@@ -270,7 +270,7 @@ export default {
         this.title = "修改商品分类属性值";
       });
     },
-    /** 提交按钮 */
+    /** 提交*/
     submitForm() {
       this.$refs["form"].validate(valid => {
         if (valid) {
@@ -294,7 +294,7 @@ export default {
         }
       });
     },
-    /** 删除按钮操作 */
+
     handleDelete(row) {
       const ids = row.id || this.ids;
       this.$modal.confirm('是否确认删除商品分类属性值编号为"' + ids + '"的数据项？').then(function() {
@@ -304,7 +304,7 @@ export default {
         this.$modal.msgSuccess("删除成功");
       }).catch(() => {});
     },
-    /** 导出按钮操作 */
+    /** 导出 */
     handleExport() {
       this.download('goods/categoryAttributeValue/export', {
         ...this.queryParams

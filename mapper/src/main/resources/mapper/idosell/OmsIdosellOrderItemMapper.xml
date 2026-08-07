@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.qihangerp.module.open.idosell.mapper.OmsIdosellOrderItemMapper">
+
+    <resultMap id="BaseResultMap" type="cn.qihangerp.module.open.idosell.domain.OmsIdosellOrderItem">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="orderId" column="order_id" jdbcType="BIGINT"/>
+            <result property="productId" column="product_id" jdbcType="BIGINT"/>
+            <result property="productCode" column="product_code" jdbcType="VARCHAR"/>
+            <result property="productName" column="product_name" jdbcType="VARCHAR"/>
+            <result property="versionName" column="version_name" jdbcType="VARCHAR"/>
+            <result property="sizeId" column="size_id" jdbcType="VARCHAR"/>
+            <result property="sizePanelName" column="size_panel_name" jdbcType="VARCHAR"/>
+            <result property="stockId" column="stock_id" jdbcType="BIGINT"/>
+            <result property="productQuantity" column="product_quantity" jdbcType="INTEGER"/>
+            <result property="productOrderPrice" column="product_order_price" jdbcType="DECIMAL"/>
+            <result property="productOrderPriceNet" column="product_order_price_net" jdbcType="DECIMAL"/>
+            <result property="productPanelPrice" column="product_panel_price" jdbcType="DECIMAL"/>
+            <result property="productPanelPriceNet" column="product_panel_price_net" jdbcType="DECIMAL"/>
+            <result property="productVat" column="product_vat" jdbcType="DECIMAL"/>
+            <result property="productWeight" column="product_weight" jdbcType="INTEGER"/>
+            <result property="basketPosition" column="basket_position" jdbcType="INTEGER"/>
+            <result property="bundleId" column="bundle_id" jdbcType="BIGINT"/>
+            <result property="orderSalesMode" column="order_sales_mode" jdbcType="VARCHAR"/>
+            <result property="productSizeCodeExternal" column="product_size_code_external" jdbcType="VARCHAR"/>
+            <result property="remarksToProduct" column="remarks_to_product" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,order_id,product_id,
+        product_code,product_name,version_name,
+        size_id,size_panel_name,stock_id,
+        product_quantity,product_order_price,product_order_price_net,
+        product_panel_price,product_panel_price_net,product_vat,
+        product_weight,basket_position,bundle_id,
+        order_sales_mode,product_size_code_external,remarks_to_product,
+        create_time,update_time
+    </sql>
+</mapper>

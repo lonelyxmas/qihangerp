@@ -12,17 +12,25 @@ spring:
         - id: sys_api_route
           uri: lb://sys-api
           predicates:
-            - Path=/sys-api/**
+            - Path=/dev-api/system/**,/dev-api/monitor/**,/dev-api/login,/dev-api/captchaImage,/dev-api/home,/dev-api/upload/**
           filters:
             - StripPrefix=1
-        - id: scm_api_route
-          uri: lb://scm-api
+        - id: oms_api_route
+          uri: lb://oms-api
           predicates:
-            - Path=/scm-api/**
+            - Path=/dev-api/**
+          filters:
+            - StripPrefix=1
+        - id: oms_api_prod_route
+          uri: lb://oms-api
+          predicates:
+            - Path=/prod-api/**
           filters:
             - StripPrefix=1
 
 eureka:
+  instance:
+    prefer-ip-address: true
   client:
     serviceUrl:
       defaultZone: http://127.0.0.1:8761/eureka/

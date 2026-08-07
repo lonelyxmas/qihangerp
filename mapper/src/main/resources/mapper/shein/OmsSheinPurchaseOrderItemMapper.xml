@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.qihangerp.module.open.shein.mapper.OmsSheinPurchaseOrderItemMapper">
+
+    <resultMap id="BaseResultMap" type="cn.qihangerp.module.open.shein.domain.OmsSheinPurchaseOrderItem">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="orderId" column="order_id" jdbcType="BIGINT"/>
+            <result property="skc" column="skc" jdbcType="VARCHAR"/>
+            <result property="skuCode" column="sku_code" jdbcType="VARCHAR"/>
+            <result property="supplierCode" column="supplier_code" jdbcType="VARCHAR"/>
+            <result property="supplierSku" column="supplier_sku" jdbcType="VARCHAR"/>
+            <result property="suffixZh" column="suffix_zh" jdbcType="VARCHAR"/>
+            <result property="price" column="price" jdbcType="DECIMAL"/>
+            <result property="needQuantity" column="need_quantity" jdbcType="INTEGER"/>
+            <result property="orderQuantity" column="order_quantity" jdbcType="INTEGER"/>
+            <result property="deliveryQuantity" column="delivery_quantity" jdbcType="INTEGER"/>
+            <result property="receiptQuantity" column="receipt_quantity" jdbcType="INTEGER"/>
+            <result property="storageQuantity" column="storage_quantity" jdbcType="INTEGER"/>
+            <result property="defectiveQuantity" column="defective_quantity" jdbcType="INTEGER"/>
+            <result property="requestDeliveryQuantity" column="request_delivery_quantity" jdbcType="INTEGER"/>
+            <result property="noRequestDeliveryQuantity" column="no_request_delivery_quantity" jdbcType="INTEGER"/>
+            <result property="alreadyDeliveryQuantity" column="already_delivery_quantity" jdbcType="INTEGER"/>
+            <result property="imgPath" column="img_path" jdbcType="VARCHAR"/>
+            <result property="remark" column="remark" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,order_id,skc,
+        sku_code,supplier_code,supplier_sku,
+        suffix_zh,price,need_quantity,
+        order_quantity,delivery_quantity,receipt_quantity,
+        storage_quantity,defective_quantity,request_delivery_quantity,
+        no_request_delivery_quantity,already_delivery_quantity,img_path,
+        remark,create_time,update_time
+    </sql>
+</mapper>

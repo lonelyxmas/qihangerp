@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.qihangerp.module.open.shein.mapper.OmsSheinGoodsMapper">
+
+    <resultMap id="BaseResultMap" type="cn.qihangerp.module.open.shein.domain.OmsSheinGoods">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="productTypeId" column="product_type_id" jdbcType="BIGINT"/>
+            <result property="categoryId" column="category_id" jdbcType="BIGINT"/>
+            <result property="brandCode" column="brand_code" jdbcType="VARCHAR"/>
+            <result property="spuName" column="spu_name" jdbcType="VARCHAR"/>
+            <result property="supplierCode" column="supplier_code" jdbcType="VARCHAR"/>
+            <result property="dimensionAttributeInfoList" column="dimension_attribute_info_list" jdbcType="VARCHAR"/>
+            <result property="productAttributeInfoList" column="product_attribute_info_list" jdbcType="VARCHAR"/>
+            <result property="productMultiDescList" column="product_multi_desc_list" jdbcType="VARCHAR"/>
+            <result property="productMultiNameList" column="product_multi_name_list" jdbcType="VARCHAR"/>
+            <result property="spuImageInfolist" column="spu_image_infolist" jdbcType="VARCHAR"/>
+        <result property="costPriceEur" column="cost_price_eur" jdbcType="DECIMAL"/>
+        <result property="costPriceCny" column="cost_price_cny" jdbcType="DECIMAL"/>
+            <result property="productImage" column="product_image" jdbcType="VARCHAR"/>
+            <result property="detailImages" column="detail_images" jdbcType="VARCHAR"/>
+            <result property="productName" column="product_name" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="oGoodsId" column="o_goods_id" jdbcType="BIGINT"/>
+            <result property="checkStatus" column="check_status" jdbcType="INTEGER"/>
+            <result property="oSkuCode" column="o_sku_code" jdbcType="VARCHAR"/>
+            <result property="shopId" column="shop_id" jdbcType="BIGINT"/>
+        <result column="sync_status" property="syncStatus" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,product_type_id,category_id,shop_id,cost_price_eur,cost_price_cny,
+        brand_code,spu_name,supplier_code,sync_status,detail_images,
+        dimension_attribute_info_list,product_attribute_info_list,product_multi_desc_list,
+        product_multi_name_list,spu_image_infolist,product_image,
+        product_name,create_time,update_time,
+        o_goods_id,check_status,o_sku_code
+    </sql>
+</mapper>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.qihangerp.module.open.shein.mapper.OmsSheinGoodsSkuStockMapper">
+
+    <resultMap id="BaseResultMap" type="cn.qihangerp.module.open.shein.domain.OmsSheinGoodsSkuStock">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="skcName" column="skc_name" jdbcType="VARCHAR"/>
+            <result property="spuName" column="spu_name" jdbcType="VARCHAR"/>
+            <result property="skuCode" column="sku_code" jdbcType="VARCHAR"/>
+            <result property="totalInventoryQuantity" column="total_inventory_quantity" jdbcType="INTEGER"/>
+            <result property="totalLockedQuantity" column="total_locked_quantity" jdbcType="INTEGER"/>
+            <result property="totalOutOfStockQty" column="total_out_of_stock_qty" jdbcType="INTEGER"/>
+            <result property="totalTempLockQuantity" column="total_temp_lock_quantity" jdbcType="INTEGER"/>
+            <result property="totalUsableInventory" column="total_usable_inventory" jdbcType="INTEGER"/>
+            <result property="warehouseCode" column="warehouse_code" jdbcType="VARCHAR"/>
+            <result property="warehouseType" column="warehouse_type" jdbcType="VARCHAR"/>
+            <result property="inventoryQuantity" column="inventory_quantity" jdbcType="INTEGER"/>
+            <result property="lockedQuantity" column="locked_quantity" jdbcType="INTEGER"/>
+            <result property="outOfStockQty" column="out_of_stock_qty" jdbcType="INTEGER"/>
+            <result property="tempLockQuantity" column="temp_lock_quantity" jdbcType="INTEGER"/>
+            <result property="usableInventory" column="usable_inventory" jdbcType="INTEGER"/>
+            <result property="shopId" column="shop_id" jdbcType="BIGINT"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="productName" column="product_name" jdbcType="VARCHAR"/>
+            <result property="supplierCode" column="supplier_code" jdbcType="VARCHAR"/>
+            <result property="supplierSku" column="supplier_sku" jdbcType="VARCHAR"/>
+            <result property="colorImage" column="color_image" jdbcType="VARCHAR"/>
+            <result property="colorValue" column="color_value" jdbcType="VARCHAR"/>
+            <result property="sizeValue" column="size_value" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,skc_name,spu_name,
+        sku_code,total_inventory_quantity,total_locked_quantity,
+        total_out_of_stock_qty,total_temp_lock_quantity,total_usable_inventory,
+        warehouse_code,warehouse_type,inventory_quantity,
+        locked_quantity,out_of_stock_qty,temp_lock_quantity,
+        usable_inventory,shop_id,create_time,
+        update_time,product_name,supplier_code,
+        supplier_sku,color_image,color_value,
+        size_value
+    </sql>
+</mapper>

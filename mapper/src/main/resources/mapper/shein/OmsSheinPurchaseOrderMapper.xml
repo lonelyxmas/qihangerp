@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.qihangerp.module.open.shein.mapper.OmsSheinPurchaseOrderMapper">
+
+    <resultMap id="BaseResultMap" type="cn.qihangerp.module.open.shein.domain.OmsSheinPurchaseOrder">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="orderNo" column="order_no" jdbcType="VARCHAR"/>
+            <result property="type" column="type" jdbcType="TINYINT"/>
+            <result property="typeName" column="type_name" jdbcType="VARCHAR"/>
+            <result property="currencyId" column="currency_id" jdbcType="INTEGER"/>
+            <result property="currencyName" column="currency_name" jdbcType="VARCHAR"/>
+            <result property="supplierName" column="supplier_name" jdbcType="VARCHAR"/>
+            <result property="warehouseName" column="warehouse_name" jdbcType="VARCHAR"/>
+            <result property="storageId" column="storage_id" jdbcType="INTEGER"/>
+            <result property="requestDeliveryTime" column="request_delivery_time" jdbcType="TIMESTAMP"/>
+            <result property="requestTakeParcelTime" column="request_take_parcel_time" jdbcType="TIMESTAMP"/>
+            <result property="requestReceiptTime" column="request_receipt_time" jdbcType="TIMESTAMP"/>
+            <result property="requestCompleteTime" column="request_complete_time" jdbcType="TIMESTAMP"/>
+            <result property="addTime" column="add_time" jdbcType="TIMESTAMP"/>
+            <result property="addUid" column="add_uid" jdbcType="VARCHAR"/>
+            <result property="allocateTime" column="allocate_time" jdbcType="TIMESTAMP"/>
+            <result property="deliveryTime" column="delivery_time" jdbcType="TIMESTAMP"/>
+            <result property="receiptTime" column="receipt_time" jdbcType="TIMESTAMP"/>
+            <result property="checkTime" column="check_time" jdbcType="TIMESTAMP"/>
+            <result property="storageTime" column="storage_time" jdbcType="TIMESTAMP"/>
+            <result property="returnTime" column="return_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="category" column="category" jdbcType="TINYINT"/>
+            <result property="categoryName" column="category_name" jdbcType="VARCHAR"/>
+            <result property="prepareTypeId" column="prepare_type_id" jdbcType="INTEGER"/>
+            <result property="prepareTypeName" column="prepare_type_name" jdbcType="VARCHAR"/>
+            <result property="orderMarkId" column="order_mark_id" jdbcType="INTEGER"/>
+            <result property="orderMarkName" column="order_mark_name" jdbcType="VARCHAR"/>
+            <result property="firstMark" column="first_mark" jdbcType="TINYINT"/>
+            <result property="firstMarkName" column="first_mark_name" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="TINYINT"/>
+            <result property="statusName" column="status_name" jdbcType="VARCHAR"/>
+            <result property="isDelivery" column="is_delivery" jdbcType="TINYINT"/>
+            <result property="isAllDelivery" column="is_all_delivery" jdbcType="TINYINT"/>
+            <result property="isProductionCompletion" column="is_production_completion" jdbcType="TINYINT"/>
+            <result property="isJitMother" column="is_jit_mother" jdbcType="TINYINT"/>
+            <result property="isPriorProduction" column="is_prior_production" jdbcType="TINYINT"/>
+            <result property="shopId" column="shop_id" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,order_no,type,
+        type_name,currency_id,currency_name,
+        supplier_name,warehouse_name,storage_id,
+        request_delivery_time,request_take_parcel_time,request_receipt_time,
+        request_complete_time,add_time,add_uid,
+        allocate_time,delivery_time,receipt_time,
+        check_time,storage_time,return_time,
+        update_time,category,category_name,
+        prepare_type_id,prepare_type_name,order_mark_id,
+        order_mark_name,first_mark,first_mark_name,
+        status,status_name,is_delivery,
+        is_all_delivery,is_production_completion,is_jit_mother,
+        is_prior_production,shop_id
+    </sql>
+</mapper>

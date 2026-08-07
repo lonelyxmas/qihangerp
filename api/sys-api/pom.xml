@@ -111,11 +111,10 @@
 <!--            <version>1.7.25</version>-->
 <!--            <scope>test</scope>-->
 <!--        </dependency>-->
-        <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter -->
         <dependency>
             <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.5.7</version>
+            <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+            <version>3.5.5</version>
         </dependency>
 
 <!--        <dependency>-->
@@ -179,15 +178,25 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>cn.qihangerp.cb</groupId>
+            <groupId>com.qiniu</groupId>
+            <artifactId>qiniu-java-sdk</artifactId>
+            <version>[7.2.0, 7.2.99]</version>
+        </dependency>
+        <!-- scm-core 模块 -->
+        <dependency>
+            <groupId>cn.qihangerp.core</groupId>
             <artifactId>security</artifactId>
             <version>1.0</version>
         </dependency>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.30</version>
-            <scope>provided</scope>
+            <groupId>cn.qihangerp.model</groupId>
+            <artifactId>model</artifactId>
+            <version>0.9.7</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.qihangerp.module</groupId>
+            <artifactId>mapper</artifactId>
+            <version>0.9.7</version>
         </dependency>
     </dependencies>
 <!--    <dependencyManagement>-->

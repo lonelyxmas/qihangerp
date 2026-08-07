@@ -12,7 +12,8 @@ const state = {
   tagsView: storageSetting.tagsView === undefined ? tagsView : storageSetting.tagsView,
   fixedHeader: storageSetting.fixedHeader === undefined ? fixedHeader : storageSetting.fixedHeader,
   sidebarLogo: storageSetting.sidebarLogo === undefined ? sidebarLogo : storageSetting.sidebarLogo,
-  dynamicTitle: storageSetting.dynamicTitle === undefined ? dynamicTitle : storageSetting.dynamicTitle
+  dynamicTitle: storageSetting.dynamicTitle === undefined ? dynamicTitle : storageSetting.dynamicTitle,
+  language: storageSetting.language || 'zh-CN'
 }
 const mutations = {
   CHANGE_SETTING: (state, { key, value }) => {

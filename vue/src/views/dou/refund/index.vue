@@ -42,8 +42,8 @@
       </el-form-item>
 
       <el-form-item>
-        <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
-        <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
+        <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">{{ $t('list.search') }}</el-button>
+        <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">{{ $t('list.reset') }}</el-button>
       </el-form-item>
     </el-form>
 
@@ -51,7 +51,7 @@
       <el-col :span="1.5">
         <el-button
           :loading="pullLoading"
-          type="success"
+          type="danger"
           plain
           icon="el-icon-download"
           size="mini"
@@ -66,7 +66,7 @@
           size="mini"
           :disabled="multiple"
           @click="handlePushOms"
-        >手动推送售后</el-button>
+        >手动将选中退款推送到售后中心</el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
@@ -124,7 +124,7 @@
           <span>{{ parseTime(scope.row.applyTime) }}</span>
         </template>
       </el-table-column>
-<!--      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">-->
+<!--      <el-table-column :label="$t('menu.operate')" align="center" class-name="small-padding fixed-width">-->
 <!--        <template slot-scope="scope">-->
 <!--          <el-button-->
 <!--          v-if="scope.row.auditStatus === 0 && scope.row.afterSalesType === 1 "-->
@@ -173,7 +173,7 @@ export default {
       single: true,
       // 非多个禁用
       multiple: true,
-      // 显示搜索条件
+      //
       showSearch: true,
       // 总条数
       total: 0,
@@ -184,13 +184,15 @@ export default {
       title: "",
       // 是否显示弹出层
       open: false,
-      pullLoading: false,
       // 查询参数
       queryParams: {
         pageNum: 1,
         pageSize: 10,
         refundId: null,
-        afterSalesType: null
+        afterSalesType: null,
+        tid: null,
+        oid: null,
+
       },
       // 表单参数
       form: {},
@@ -212,13 +214,14 @@ export default {
     };
   },
   created() {
-    listShop({platform: 6}).then(response => {
+    listShop({type: 400}).then(response => {
       this.shopList = response.rows;
       if (this.shopList && this.shopList.length > 0) {
         this.queryParams.shopId = this.shopList[0].id
       }
       this.getList();
     });
+    // this.getList();
   },
   methods: {
     amountFormatter(row, column, cellValue, index) {
@@ -233,12 +236,12 @@ export default {
         this.loading = false;
       });
     },
-    // 取消按钮
+
     cancel() {
       this.open = false;
       this.reset();
     },
-    // 表单重置
+    //
     reset() {
       this.form = {
         id: null,
@@ -250,12 +253,12 @@ export default {
       };
       this.resetForm("form");
     },
-    /** 搜索按钮操作 */
+    /**  */
     handleQuery() {
       this.queryParams.pageNum = 1;
       this.getList();
     },
-    /** 重置按钮操作 */
+    /**  */
     resetQuery() {
       this.resetForm("queryForm");
       this.handleQuery();

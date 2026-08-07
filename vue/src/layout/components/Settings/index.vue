@@ -176,7 +176,8 @@ export default {
             "sidebarLogo":${this.sidebarLogo},
             "dynamicTitle":${this.dynamicTitle},
             "sideTheme":"${this.sideTheme}",
-            "theme":"${this.theme}"
+            "theme":"${this.theme}",
+            "language":"${this.$store.state.settings.language}"
           }`
       );
       setTimeout(this.$modal.closeLoading(), 1000)

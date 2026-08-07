@@ -33,7 +33,7 @@
         </template>
       </el-table-column>
     </el-table>
-    
+
     <pagination v-show="total>0" :total="total" :page.sync="pageNum" :limit.sync="pageSize" />
 
     <el-form label-width="100px">
@@ -98,7 +98,7 @@ export default {
     getRowKey(row) {
       return row.roleId;
     },
-    /** 提交按钮 */
+    /** 提交*/
     submitForm() {
       const userId = this.form.userId;
       const roleIds = this.roleIds.join(",");
@@ -107,7 +107,7 @@ export default {
         this.close();
       });
     },
-    /** 关闭按钮 */
+    /** 关闭*/
     close() {
       const obj = { path: "/system/user" };
       this.$tab.closeOpenPage(obj);

@@ -20,8 +20,8 @@
         </el-select>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
-        <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
+        <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">{{ $t('list.search') }}</el-button>
+        <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">{{ $t('list.reset') }}</el-button>
       </el-form-item>
     </el-form>
 
@@ -68,7 +68,7 @@
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column :label="$t('menu.operate')" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
             size="mini"
@@ -150,8 +150,8 @@
         </el-row>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="submitForm">确 定</el-button>
-        <el-button @click="cancel">取 消</el-button>
+        <el-button type="primary" @click="submitForm">{{$t('list.submit')}}</el-button>
+        <el-button @click="cancel">{{$t('list.cancel')}}</el-button>
       </div>
     </el-dialog>
   </div>
@@ -170,7 +170,7 @@ export default {
     return {
       // 遮罩层
       loading: true,
-      // 显示搜索条件
+      //
       showSearch: true,
       // 表格树数据
       deptList: [],
@@ -242,12 +242,12 @@ export default {
         children: node.children
       };
     },
-    // 取消按钮
+
     cancel() {
       this.open = false;
       this.reset();
     },
-    // 表单重置
+    //
     reset() {
       this.form = {
         deptId: undefined,
@@ -261,16 +261,16 @@ export default {
       };
       this.resetForm("form");
     },
-    /** 搜索按钮操作 */
+    /**  */
     handleQuery() {
       this.getList();
     },
-    /** 重置按钮操作 */
+    /**  */
     resetQuery() {
       this.resetForm("queryForm");
       this.handleQuery();
     },
-    /** 新增按钮操作 */
+
     handleAdd(row) {
       this.reset();
       if (row != undefined) {
@@ -290,7 +290,7 @@ export default {
         this.refreshTable = true;
       });
     },
-    /** 修改按钮操作 */
+
     handleUpdate(row) {
       this.reset();
       getDept(row.deptId).then(response => {
@@ -306,7 +306,7 @@ export default {
         });
       });
     },
-    /** 提交按钮 */
+    /** 提交*/
     submitForm: function() {
       this.$refs["form"].validate(valid => {
         if (valid) {
@@ -326,7 +326,7 @@ export default {
         }
       });
     },
-    /** 删除按钮操作 */
+
     handleDelete(row) {
       this.$modal.confirm('是否确认删除名称为"' + row.deptName + '"的数据项？').then(function() {
         return delDept(row.deptId);

@@ -2,31 +2,31 @@
   <div class="app-container">
     <el-row :gutter="20">
       <!--部门数据-->
-<!--      <el-col :span="4" :xs="24">-->
-<!--        <div class="head-container">-->
-<!--          <el-input-->
-<!--            v-model="deptName"-->
-<!--            placeholder="请输入部门名称"-->
-<!--            clearable-->
-<!--            size="small"-->
-<!--            prefix-icon="el-icon-search"-->
-<!--            style="margin-bottom: 20px"-->
-<!--          />-->
-<!--        </div>-->
-<!--        <div class="head-container">-->
-<!--          <el-tree-->
-<!--            :data="deptOptions"-->
-<!--            :props="defaultProps"-->
-<!--            :expand-on-click-node="false"-->
-<!--            :filter-node-method="filterNode"-->
-<!--            ref="tree"-->
-<!--            node-key="id"-->
-<!--            default-expand-all-->
-<!--            highlight-current-->
-<!--            @node-click="handleNodeClick"-->
-<!--          />-->
-<!--        </div>-->
-<!--      </el-col>-->
+      <el-col :span="4" :xs="24">
+        <div class="head-container">
+          <el-input
+            v-model="deptName"
+            placeholder="请输入部门名称"
+            clearable
+            size="small"
+            prefix-icon="el-icon-search"
+            style="margin-bottom: 20px"
+          />
+        </div>
+        <div class="head-container">
+          <el-tree
+            :data="deptOptions"
+            :props="defaultProps"
+            :expand-on-click-node="false"
+            :filter-node-method="filterNode"
+            ref="tree"
+            node-key="id"
+            default-expand-all
+            highlight-current
+            @node-click="handleNodeClick"
+          />
+        </div>
+      </el-col>
       <!--用户数据-->
       <el-col :span="20" :xs="24">
         <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
@@ -75,8 +75,8 @@
             ></el-date-picker>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
-            <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
+            <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">{{ $t('list.search') }}</el-button>
+            <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">{{ $t('list.reset') }}</el-button>
           </el-form-item>
         </el-form>
 
@@ -121,7 +121,7 @@
           <el-table-column label="用户编号" align="center" key="userId" prop="userId" v-if="columns[0].visible" />
           <el-table-column label="用户名称" align="center" key="userName" prop="userName" v-if="columns[1].visible" :show-overflow-tooltip="true" />
           <el-table-column label="用户昵称" align="center" key="nickName" prop="nickName" v-if="columns[2].visible" :show-overflow-tooltip="true" />
-<!--          <el-table-column label="部门" align="center" key="deptName" prop="dept.deptName" v-if="columns[3].visible" :show-overflow-tooltip="true" />-->
+          <el-table-column label="部门" align="center" key="deptName" prop="dept.deptName" v-if="columns[3].visible" :show-overflow-tooltip="true" />
           <el-table-column label="手机号码" align="center" key="phonenumber" prop="phonenumber" v-if="columns[4].visible" width="120" />
           <el-table-column label="状态" align="center" key="status" v-if="columns[5].visible">
             <template slot-scope="scope">
@@ -139,7 +139,7 @@
             </template>
           </el-table-column>
           <el-table-column
-            label="操作"
+            :label="$t('menu.operate')"
             align="center"
             width="160"
             class-name="small-padding fixed-width"
@@ -164,8 +164,8 @@
                 <el-dropdown-menu slot="dropdown">
                   <el-dropdown-item command="handleResetPwd" icon="el-icon-key"
                     v-hasPermi="['system:user:resetPwd']">重置密码</el-dropdown-item>
-<!--                  <el-dropdown-item command="handleAuthRole" icon="el-icon-circle-check"-->
-<!--                    v-hasPermi="['system:user:edit']">分配角色</el-dropdown-item>-->
+                  <el-dropdown-item command="handleAuthRole" icon="el-icon-circle-check"
+                    v-hasPermi="['system:user:edit']">分配角色</el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
             </template>
@@ -283,8 +283,8 @@
         </el-row>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="submitForm">确 定</el-button>
-        <el-button @click="cancel">取 消</el-button>
+        <el-button type="primary" @click="submitForm">{{$t('list.submit')}}</el-button>
+        <el-button @click="cancel">{{$t('list.cancel')}}</el-button>
       </div>
     </el-dialog>
 
@@ -312,7 +312,7 @@ export default {
       single: true,
       // 非多个禁用
       multiple: true,
-      // 显示搜索条件
+      //
       showSearch: true,
       // 总条数
       total: 0,
@@ -412,7 +412,7 @@ export default {
   },
   created() {
     this.getList();
-    // this.getDeptTree();
+    this.getDeptTree();
     // this.getConfigKey("sys.user.initPassword").then(response => {
     //   this.initPassword = response.msg;
     // });
@@ -429,11 +429,11 @@ export default {
       );
     },
     /** 查询部门下拉树结构 */
-    // getDeptTree() {
-    //   deptTreeSelect().then(response => {
-    //     this.deptOptions = response.data;
-    //   });
-    // },
+    getDeptTree() {
+      deptTreeSelect().then(response => {
+        this.deptOptions = response.data;
+      });
+    },
     // 筛选节点
     filterNode(value, data) {
       if (!value) return true;
@@ -455,12 +455,12 @@ export default {
         row.status = row.status === "0" ? "1" : "0";
       });
     },
-    // 取消按钮
+
     cancel() {
       this.open = false;
       this.reset();
     },
-    // 表单重置
+    //
     reset() {
       this.form = {
         userId: undefined,
@@ -478,12 +478,12 @@ export default {
       };
       this.resetForm("form");
     },
-    /** 搜索按钮操作 */
+    /**  */
     handleQuery() {
       this.queryParams.pageNum = 1;
       this.getList();
     },
-    /** 重置按钮操作 */
+    /**  */
     resetQuery() {
       this.dateRange = [];
       this.resetForm("queryForm");
@@ -510,7 +510,7 @@ export default {
           break;
       }
     },
-    /** 新增按钮操作 */
+
     handleAdd() {
       this.reset();
       getUser().then(response => {
@@ -521,22 +521,21 @@ export default {
         this.form.password = this.initPassword;
       });
     },
-    /** 修改按钮操作 */
+
     handleUpdate(row) {
       this.reset();
       const userId = row.userId || this.ids;
       getUser(userId).then(response => {
         this.form = response.data;
-        // this.postOptions = response.posts;
-        // this.roleOptions = response.roles;
-        // this.$set(this.form, "postIds", response.postIds);
-        // this.$set(this.form, "roleIds", response.roleIds);
+        this.postOptions = response.posts;
+        this.roleOptions = response.roles;
+        this.$set(this.form, "postIds", response.postIds);
+        this.$set(this.form, "roleIds", response.roleIds);
         this.open = true;
         this.title = "修改用户";
         this.form.password = "";
       });
     },
-    /** 重置密码按钮操作 */
     handleResetPwd(row) {
       this.$prompt('请输入"' + row.userName + '"的新密码', "提示", {
         confirmButtonText: "确定",
@@ -555,7 +554,7 @@ export default {
       const userId = row.userId;
       this.$router.push("/system/user-auth/role/" + userId);
     },
-    /** 提交按钮 */
+    /** 提交*/
     submitForm: function() {
       this.$refs["form"].validate(valid => {
         if (valid) {
@@ -575,7 +574,7 @@ export default {
         }
       });
     },
-    /** 删除按钮操作 */
+
     handleDelete(row) {
       const userIds = row.userId || this.ids;
       this.$modal.confirm('是否确认删除用户编号为"' + userIds + '"的数据项？').then(function() {

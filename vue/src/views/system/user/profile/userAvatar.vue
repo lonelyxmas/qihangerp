@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div class="user-info-head" @click="editCropper()"><img v-bind:src="options.img" title="点击上传头像" class="img-circle img-lg" /></div>
+<!--    <div class="user-info-head" @click="editCropper()">-->
+    <div @click="editCropper()">
+      <img v-bind:src="options.img" title="点击上传头像" class="img-circle img-lg" />
+    </div>
     <el-dialog :title="title" :visible.sync="open" width="800px" append-to-body @opened="modalOpened"  @close="closeDialog">
       <el-row>
         <el-col :xs="24" :md="12" :style="{height: '350px'}">
@@ -89,7 +92,7 @@ export default {
   methods: {
     // 编辑头像
     editCropper() {
-      this.open = true;
+      // this.open = true;
     },
     // 打开弹出层结束时的回调
     modalOpened() {

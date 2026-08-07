@@ -32,13 +32,24 @@
         </div>
         <el-dropdown-menu slot="dropdown">
           <router-link to="/user/profile">
-            <el-dropdown-item>个人中心</el-dropdown-item>
+            <el-dropdown-item>{{ $t('navbar.profile') }}</el-dropdown-item>
           </router-link>
           <el-dropdown-item @click.native="setting = true">
-            <span>布局设置</span>
+            <span>{{ $t('navbar.layoutSetting') }}</span>
+          </el-dropdown-item>
+          <el-dropdown-item divided>
+            <span>{{ $t('navbar.language') }}</span>
+          </el-dropdown-item>
+          <el-dropdown-item @click.native="setLanguage('zh-CN')">
+            <span>简体中文</span>
+            <svg-icon v-if="language==='zh-CN'" icon-class="check" class="check-icon" />
+          </el-dropdown-item>
+          <el-dropdown-item @click.native="setLanguage('en-US')">
+            <span>English</span>
+            <svg-icon v-if="language==='en-US'" icon-class="check" class="check-icon" />
           </el-dropdown-item>
           <el-dropdown-item divided @click.native="logout">
-            <span>退出登录</span>
+            <span>{{ $t('navbar.logout') }}</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -54,6 +65,7 @@ import Hamburger from '@/components/Hamburger'
 import Screenfull from '@/components/Screenfull'
 import SizeSelect from '@/components/SizeSelect'
 import Search from '@/components/HeaderSearch'
+import Cookies from 'js-cookie'
 
 export default {
   components: {
@@ -69,6 +81,9 @@ export default {
       'sidebar',
       'avatar',
       'device'
+    ]),
+    ...mapGetters('app', [
+      'language'
     ]),
     setting: {
       get() {
@@ -101,6 +116,14 @@ export default {
           location.href = '/index';
         })
       }).catch(() => {});
+    },
+    setLanguage(lang) {
+      this.$i18n.locale = lang
+      this.$store.dispatch('app/setLanguage', lang)
+      this.$message({
+        message: this.$t('navbar.switchLanguageSuccess'),
+        type: 'success'
+      })
     }
   }
 }

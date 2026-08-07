@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 查询
 export function listShipping(query) {
   return request({
-    url: '/scm-api/shipping/list',
+    url: '/api/oms-api/shipping/list',
     method: 'get',
     params: query
   })
@@ -19,9 +19,26 @@ export function getLogistics(id) {
 // 新增
 export function handShip(data) {
   return request({
-    url: '/scm-api/shipping/handShip',
+    url: '/api/oms-api/shipping/handShip',
     method: 'post',
     data: data
   })
 }
 
+
+export function searchOrderConsignee(query) {
+  return request({
+    url: '/api/oms-api/shipping/searchOrderConsignee',
+    method: 'get',
+    params: query
+  })
+}
+
+
+export function searchOrderItemByReceiverMobile(query) {
+  return request({
+    url: '/api/oms-api/shipping/searchOrderItemByReceiverMobile',
+    method: 'get',
+    params: query
+  })
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.qihangerp.module.open.idosell.mapper.OmsIdosellGoodsSkuStockMapper">
+
+    <resultMap id="BaseResultMap" type="cn.qihangerp.module.open.idosell.domain.OmsIdosellGoodsSkuStock">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="productId" column="product_id" jdbcType="VARCHAR"/>
+            <result property="productName" column="product_name" jdbcType="VARCHAR"/>
+            <result property="goodsNum" column="goods_num" jdbcType="VARCHAR"/>
+            <result property="skuCode" column="sku_code" jdbcType="VARCHAR"/>
+            <result property="colorImage" column="color_image" jdbcType="VARCHAR"/>
+            <result property="colorValue" column="color_value" jdbcType="VARCHAR"/>
+            <result property="sizeId" column="size_id" jdbcType="VARCHAR"/>
+            <result property="sizeName" column="size_name" jdbcType="VARCHAR"/>
+            <result property="quantity" column="quantity" jdbcType="INTEGER"/>
+            <result property="stockId" column="stock_id" jdbcType="INTEGER"/>
+            <result property="shopId" column="shop_id" jdbcType="BIGINT"/>
+            <result property="productSizeCode" column="product_size_code" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,product_id,product_name,shop_id,
+        goods_num,sku_code,color_image,
+        color_value,size_id,size_name,
+        quantity,stock_id,product_size_code,
+        create_time,update_time
+    </sql>
+</mapper>

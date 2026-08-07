@@ -1,9 +1,9 @@
 {
   "name": "qihang-cb-erp",
-  "version": "2.8.4",
-  "description": "启航跨境电商ERP系统",
+  "version": "2.1.1",
+  "description": "启航跨境电商系统",
   "author": "qihang",
-  "license": "MIT",
+  "license": "AGPL-3.0",
   "scripts": {
     "dev": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve",
     "build:prod": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service build",
@@ -33,13 +33,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/qiliping/zhijian.git"
+    "url": "https://gitee.com/qiliping/qihangerp.git"
   },
   "dependencies": {
     "@riophae/vue-treeselect": "^0.4.0",
     "@smallwei/avue": "^2.10.15",
     "axios": "0.24.0",
-    "clipboard": "2.0.8",
+    "clipboard": "^2.0.8",
     "core-js": "3.25.3",
     "echarts": "5.4.0",
     "element-china-area-data": "^6.1.0",
@@ -57,7 +57,9 @@
     "vue": "2.6.12",
     "vue-count-to": "1.0.13",
     "vue-cropper": "0.5.5",
+    "vue-i18n": "^8.28.2",
     "vue-meta": "2.4.0",
+    "vue-print-nb": "^1.7.5",
     "vue-router": "3.4.9",
     "vuedraggable": "2.24.3",
     "vuex": "3.6.0"

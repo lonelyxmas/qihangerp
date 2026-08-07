@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.qihangerp.module.open.idosell.mapper.IdosellGoodsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.qihangerp.module.open.idosell.domain.vo.IdosellGoods">
+        <id column="id" property="id" />
+        <result column="product_id" property="productId" />
+        <result column="product_name" property="productName" />
+        <result column="product_desc" property="productDesc" />
+        <result column="category_id" property="categoryId" />
+        <result column="category_name" property="categoryName" />
+        <result column="product_displayed_code" property="productDisplayedCode" />
+        <result column="goods_num" property="goodsNum" />
+        <result column="retail_price" property="retailPrice" />
+        <result column="wholesale_price" property="wholesalePrice" />
+        <result column="main_image" property="mainImage" />
+        <result column="detail_images" property="detailImages" />
+        <result column="sync_status" property="syncStatus" />
+        <result column="o_goods_id" property="oGoodsId" />
+        <result column="error_msg" property="errorMsg" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="shop_id" property="shopId" />
+        <result column="deliverer_id" property="delivererId" />
+        <result column="deliverer_name" property="delivererName" />
+        <result column="product_is_deleted" property="productIsDeleted" />
+        <result column="product_is_visible" property="productIsVisible" />
+        <result column="product_vat" property="productVat" />
+        <result column="product_vat_free" property="productVatFree" />
+        <result column="product_adding_time" property="productAddingTime" />
+        <result column="product_quantity_changed_time" property="productQuantityChangedTime" />
+        <result column="currency_id" property="currencyId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, product_id, product_name, product_desc, category_id, category_name, product_displayed_code, goods_num, retail_price, wholesale_price,
+          main_image, detail_images, sync_status, o_goods_id, error_msg, create_time, update_time, shop_id,product_quantity_changed_time,
+          deliverer_id,deliverer_name,product_is_deleted,product_is_visible,product_vat,product_vat_free,product_adding_time,currency_id
+    </sql>
+
+</mapper>

@@ -1,36 +1,5 @@
 <template>
   <div class="app-container">
-    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="分类编码" prop="number">
-        <el-input
-          v-model="queryParams.number"
-          placeholder="请输入分类编码"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-      <el-form-item label="分类名称" prop="name">
-        <el-input
-          v-model="queryParams.name"
-          placeholder="请输入分类名称"
-          clearable
-          @keyup.enter.native="handleQuery"
-        />
-      </el-form-item>
-
-      <el-form-item label="是否删除" prop="isDelete">
-
-        <el-select v-model="queryParams.isDelete" placeholder="是否删除" clearable @change="handleQuery">
-         <el-option value="0" label="否"></el-option>
-         <el-option value="1" label="是"></el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
-        <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
-      </el-form-item>
-    </el-form>
-
     <el-row :gutter="10" class="mb8">
       <el-col :span="1.5">
         <el-button
@@ -40,94 +9,70 @@
           size="mini"
           @click="handleAdd(null)"
           v-hasPermi="['goods:category:add']"
-        >新增</el-button>
+        >{{$t('list.create')}}</el-button>
       </el-col>
-     <!--  <el-col :span="1.5">
-        <el-button
-          type="success"
-          plain
-          icon="el-icon-edit"
-          size="mini"
-          :disabled="single"
-          @click="handleUpdate"
-          v-hasPermi="['goods:category:edit']"
-        >修改</el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="danger"
-          plain
-          icon="el-icon-delete"
-          size="mini"
-          :disabled="multiple"
-          @click="handleDelete"
-          v-hasPermi="['goods:category:remove']"
-        >删除</el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="warning"
-          plain
-          icon="el-icon-download"
-          size="mini"
-          @click="handleExport"
-          v-hasPermi="['goods:category:export']"
-        >导出</el-button>
-      </el-col> -->
+
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
     <el-table v-loading="loading" :data="categoryList" row-key="id" :tree-props="{children: 'children'}"  >
       <!-- <el-table-column type="selection" width="55" align="center" /> -->
-      <!-- <el-table-column label="ID" align="center" prop="id" /> -->
-      <el-table-column label="分类名称"  prop="name" />
-      <el-table-column label="分类编码" align="center" prop="number" />
+       <el-table-column label="ID" align="center" prop="id" />
+      <el-table-column :label="$t('list.name')"  prop="name" />
+      <el-table-column :label="$t('list.code')" align="center" prop="number" />
+      <el-table-column :label="$t('list.productType')" align="center" prop="productTypeId" />
 
-      <el-table-column label="备注" align="center" prop="remark" />
-
-      <el-table-column label="排序值" align="center" prop="sort" />
+      <el-table-column :label="$t('list.remark')" align="center" prop="remark" />
+      <el-table-column :label="$t('list.sort')" align="center" prop="sort" />
 <!--      <el-table-column label="图片" align="center" prop="image" width="100">-->
 <!--        <template slot-scope="scope">-->
 <!--          <image-preview :src="scope.row.image" :width="50" :height="50"/>-->
 <!--        </template>-->
 <!--      </el-table-column>-->
-      <el-table-column label="是否删除" align="center" prop="isDelete" >
+      <el-table-column :label="$t('list.isDelete')" align="center" prop="isDelete" >
         <template slot-scope="scope">
-          <el-tag size="small" v-if="scope.row.isDelete === 0">否</el-tag>
-          <el-tag size="small" v-if="scope.row.isDelete === 1">是</el-tag>
+          <el-tag size="small" v-if="scope.row.isDelete === 0">N</el-tag>
+          <el-tag size="small" v-if="scope.row.isDelete === 1">Y</el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column :label="$t('list.platform')" align="center" prop="isDelete" >
+        <template slot-scope="scope">
+          <el-tag size="small" v-for="item in getRelation(scope.row.relationsJson)">
+            <el-col v-if=" item.shop_platform_id ===1500">SHEIN</el-col>
+            <el-col v-if=" item.shop_platform_id ===2000">IdoSell</el-col>
+          </el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column :label="$t('menu.operate')" align="left" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
             type="text"
-            icon="el-icon-plus"
+            icon="el-icon-view"
             size="mini"
-            v-if="scope.row.parentId===0"
+            v-if="scope.row.productTypeId>0"
             @click="handleCategory(scope.row)"
-          >规格属性</el-button>
+          >{{$t('list.operate.attribute')}}</el-button>
           <el-button
           type="text"
           icon="el-icon-plus"
           size="mini"
-          v-if="scope.row.parentId===0"
           @click="handleAdd(scope.row)"
           v-hasPermi="['goods:category:add']"
-        >新增</el-button>
+        >{{$t('list.create')}}</el-button>
           <el-button
             size="mini"
             type="text"
             icon="el-icon-edit"
             @click="handleUpdate(scope.row)"
             v-hasPermi="['goods:category:edit']"
-          >修改</el-button>
+          >{{$t('list.operate.edit')}}</el-button>
           <el-button
             size="mini"
             type="text"
             icon="el-icon-delete"
             @click="handleDelete(scope.row)"
             v-hasPermi="['goods:category:remove']"
-          >删除</el-button>
+          >{{$t('list.operate.delete')}}</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -172,8 +117,8 @@
 
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="submitForm">确 定</el-button>
-        <el-button @click="cancel">取 消</el-button>
+        <el-button type="primary" @click="submitForm">{{$t('list.submit')}}</el-button>
+        <el-button @click="cancel">{{$t('list.cancel')}}</el-button>
       </div>
     </el-dialog>
   </div>
@@ -194,7 +139,7 @@ export default {
       single: true,
       // 非多个禁用
       multiple: true,
-      // 显示搜索条件
+      //
       showSearch: true,
       // 总条数
       total: 0,
@@ -231,10 +176,32 @@ export default {
     this.getList();
   },
   methods: {
+    getRelation(jsonString){
+      if(jsonString) {
+
+        let parsedData = JSON.parse(jsonString);
+        if (parsedData) {
+          return parsedData
+          // let resultStrings = [];
+          // 循环遍历 parsedData 数组
+          // parsedData.forEach(item => {
+            // if(item.shop_platform_id === 1500){
+            //   resultStrings.push('SHEIN')
+            // }else if(item.shop_platform_id === 2000){
+            //   resultStrings.push('IDOSELL')
+            // }
+            // resultStrings.push(`shop_category_id: ${item.shop_category_id}, shop_platform_id: ${item.shop_platform_id}`);
+          // });
+          // return resultStrings.join('; ')
+        }
+      }
+    },
     buildTree(list, parentId) {
       let tree = [];
       for (let i = 0; i < list.length; i++) {
+        // console.log("=======111111==",list[i])
         if (list[i].parentId === parentId) {
+          // console.log("=======22222==",parentId)
           let node = {
             id: list[i].id,
             name: list[i].name,
@@ -244,6 +211,8 @@ export default {
             remark:list[i].remark,
             parentId:list[i].parentId,
             isDelete:list[i].isDelete,
+            relationsJson:list[i].relationsJson,
+            productTypeId:list[i].productTypeId,
             children: this.buildTree(list, list[i].id)
           };
           tree.push(node);
@@ -255,19 +224,19 @@ export default {
     /** 查询商品分类列表 */
     getList() {
       this.loading = true;
-      listCategory(this.queryParams).then(response => {
+      listCategory().then(response => {
         this.categoryList = this.buildTree(response.rows,0)
         console.log("构建后的list",this.categoryList)
         // this.total = response.total;
         this.loading = false;
       });
     },
-    // 取消按钮
+
     cancel() {
       this.open = false;
       this.reset();
     },
-    // 表单重置
+    //
     reset() {
       this.form = {
         id: null,
@@ -286,12 +255,12 @@ export default {
       };
       this.resetForm("form");
     },
-    /** 搜索按钮操作 */
+    /**  */
     handleQuery() {
       this.queryParams.pageNum = 1;
       this.getList();
     },
-    /** 重置按钮操作 */
+    /**  */
     resetQuery() {
       this.resetForm("queryForm");
       this.handleQuery();
@@ -299,7 +268,7 @@ export default {
     handleCategory(row){
       this.$router.push({path:'/goods/goods_category/attribute',query:{categoryId:row.id,categoryName:row.name}});
     },
-    /** 新增按钮操作 */
+
     handleAdd(row) {
       this.reset();
       if(row){
@@ -312,7 +281,7 @@ export default {
       this.open = true;
       this.title = "添加商品分类";
     },
-    /** 修改按钮操作 */
+
     handleUpdate(row) {
       this.reset();
       const id = row.id || this.ids
@@ -322,7 +291,7 @@ export default {
         this.title = "修改商品分类";
       });
     },
-    /** 提交按钮 */
+    /** 提交*/
     submitForm() {
       this.$refs["form"].validate(valid => {
         if (valid) {
@@ -342,7 +311,7 @@ export default {
         }
       });
     },
-    /** 删除按钮操作 */
+
     handleDelete(row) {
       const ids = row.id || this.ids;
       this.$modal.confirm('是否确认删除商品分类编号为"' + ids + '"的数据项？').then(function() {
@@ -352,7 +321,7 @@ export default {
         this.$modal.msgSuccess("删除成功");
       }).catch(() => {});
     },
-    /** 导出按钮操作 */
+    /** 导出 */
     handleExport() {
       this.download('goods/category/export', {
         ...this.queryParams

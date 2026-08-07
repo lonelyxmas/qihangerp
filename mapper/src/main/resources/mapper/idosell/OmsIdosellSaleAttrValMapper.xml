@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.qihangerp.module.open.idosell.mapper.OmsIdosellSaleAttrValMapper">
+
+    <resultMap id="BaseResultMap" type="cn.qihangerp.module.open.idosell.domain.OmsIdosellSaleAttrVal">
+            <id property="attributeValueId" column="attribute_value_id" jdbcType="BIGINT"/>
+            <result property="attributeId" column="attribute_id" jdbcType="BIGINT"/>
+            <result property="attributeValue" column="attribute_value" jdbcType="VARCHAR"/>
+            <result property="sizePanelName" column="size_panel_name" jdbcType="VARCHAR"/>
+            <result property="langData" column="lang_data" jdbcType="VARCHAR"/>
+            <result property="groupName" column="group_name" jdbcType="VARCHAR"/>
+            <result property="groupId" column="group_id" jdbcType="INTEGER"/>
+            <result property="isShow" column="is_show" jdbcType="INTEGER"/>
+            <result property="isCustomAttributeValue" column="is_custom_attribute_value" jdbcType="VARCHAR"/>
+            <result property="omsAttributeValueId" column="oms_attribute_value_id" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        attribute_value_id,attribute_id,attribute_value,size_panel_name,group_id,group_name,
+        is_show,is_custom_attribute_value,oms_attribute_value_id,lang_data
+    </sql>
+</mapper>

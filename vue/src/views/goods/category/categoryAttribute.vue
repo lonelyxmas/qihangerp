@@ -2,7 +2,7 @@
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
       <el-form-item label="分类" prop="categoryName">
-        <el-input
+        <el-input disabled
           v-model="queryParams.categoryName"
           placeholder=""
           readonly
@@ -24,10 +24,10 @@
 <!--          @keyup.enter.native="handleQuery"-->
 <!--        />-->
 <!--      </el-form-item>-->
-      <el-form-item>
-        <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
-        <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
-      </el-form-item>
+<!--      <el-form-item>-->
+<!--        <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">{{ $t('list.search') }}</el-button>-->
+<!--        <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">{{ $t('list.reset') }}</el-button>-->
+<!--      </el-form-item>-->
     </el-form>
 
     <el-row :gutter="10" class="mb8">
@@ -39,7 +39,7 @@
           size="mini"
           @click="handleAdd"
           v-hasPermi="['goods:categoryAttribute:add']"
-        >新增</el-button>
+        >{{$t('list.create')}}</el-button>
       </el-col>
 <!--      <el-col :span="1.5">-->
 <!--        <el-button-->
@@ -70,20 +70,50 @@
     <el-table v-loading="loading" :data="categoryAttributeList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="ID" align="center" prop="id" />
+      <el-table-column label="属性ID" align="center" prop="attributeId" />
+      <el-table-column label="属性名" align="left" prop="attributeName" />
+      <el-table-column label="分类ID" align="left" prop="categoryId" />
+      <el-table-column label="类型" align="center" prop="attributeType" >
+        <template slot-scope="scope">
+          <!-- 属性的类型 1-销售属性（在skc和sku维度传参），2-尺寸属性（在size维度传参），3-成分属性（在商品属性维度传参），4-普通属性（在商品属性维度传参）-->
+          <el-tag v-if="scope.row.attributeType === 1" style="margin-bottom: 6px;">销售属性</el-tag>
+          <el-tag v-if="scope.row.attributeType === 2" style="margin-bottom: 6px;">尺寸属性</el-tag>
+          <el-tag v-if="scope.row.attributeType === 3" style="margin-bottom: 6px;">成分属性</el-tag>
+          <el-tag v-if="scope.row.attributeType === 4" style="margin-bottom: 6px;">普通属性</el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column label="属性" align="center" prop="attributeLabel" >
+        <template slot-scope="scope">
+          <!-- 属性的类型 1-销售属性（在skc和sku维度传参），2-尺寸属性（在size维度传参），3-成分属性（在商品属性维度传参），4-普通属性（在商品属性维度传参）-->
+          <el-tag v-if="scope.row.attributeLabel === 1" style="margin-bottom: 6px;">主销售属性</el-tag>
+          <el-tag v-if="scope.row.attributeType === 1 && scope.row.attributeLabel === 0" style="margin-bottom: 6px;">次销售属性</el-tag>
+          <el-tag v-if="scope.row.attributeType !== 1 && scope.row.attributeLabel === 0" style="margin-bottom: 6px;">一般属性</el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column label="是否必填" align="center" prop="attributeStatus" >
+        <template slot-scope="scope">
+          <!-- 1:属性不填; 2:属性选填; 3:属性必填 -->
+          <el-tag v-if="scope.row.attributeStatus === 1" style="margin-bottom: 6px;">属性不填</el-tag>
+          <el-tag v-if="scope.row.attributeStatus === 2" style="margin-bottom: 6px;">属性选填</el-tag>
+          <el-tag v-if="scope.row.attributeStatus === 3" style="margin-bottom: 6px;">属性必填</el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column label="输入方式" align="center" prop="attributeMode" >
+        <template slot-scope="scope">
+          <!-- 属性录入方式;0: 手工填写参数；1:下拉列表选择(可多选);2:销售属性专属(只针对销售属性，下拉列表选择);3:下拉列表选择(单选)4:下拉列表+手工参数 -->
+          <el-tag v-if="scope.row.attributeMode === 0" style="margin-bottom: 6px;">手工填写参数</el-tag>
+          <el-tag v-if="scope.row.attributeMode === 1" style="margin-bottom: 6px;">下拉列表选择(可多选)</el-tag>
+          <el-tag v-if="scope.row.attributeMode === 2" style="margin-bottom: 6px;">销售属性专属(下拉列表选择)</el-tag>
+          <el-tag v-if="scope.row.attributeMode === 3" style="margin-bottom: 6px;">下拉列表选择(单选)</el-tag>
+          <el-tag v-if="scope.row.attributeMode === 4" style="margin-bottom: 6px;">下拉列表+手工参数</el-tag>
+        </template>
+      </el-table-column>
       <el-table-column label="分类" align="center" prop="categoryId" >
         <template slot-scope="scope">
           {{queryParams.categoryName}}
         </template>
       </el-table-column>
-      <el-table-column label="类型：0属性1规格" align="center" prop="type" >
-        <template slot-scope="scope">
-          <el-tag v-if="scope.row.type === 1" style="margin-bottom: 6px;">规格</el-tag>
-          <el-tag v-if="scope.row.type === 0" style="margin-bottom: 6px;">属性</el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column label="属性名" align="center" prop="title" />
-<!--      <el-table-column label="固定值color颜色size尺码style款式" align="center" prop="code" />-->
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column :label="$t('menu.operate')" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
             size="mini"
@@ -142,8 +172,8 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="submitForm">确 定</el-button>
-        <el-button @click="cancel">取 消</el-button>
+        <el-button type="primary" @click="submitForm">{{$t('list.submit')}}</el-button>
+        <el-button @click="cancel">{{$t('list.cancel')}}</el-button>
       </div>
     </el-dialog>
   </div>
@@ -164,7 +194,7 @@ export default {
       single: true,
       // 非多个禁用
       multiple: true,
-      // 显示搜索条件
+      //
       showSearch: true,
       // 总条数
       total: 0,
@@ -212,16 +242,16 @@ export default {
       this.loading = true;
       listCategoryAttribute(this.queryParams).then(response => {
         this.categoryAttributeList = response.rows;
-        this.total = response.total;
+        // this.total = response.total;
         this.loading = false;
       });
     },
-    // 取消按钮
+
     cancel() {
       this.open = false;
       this.reset();
     },
-    // 表单重置
+    //
     reset() {
       this.form = {
         id: null,
@@ -232,12 +262,12 @@ export default {
       };
       this.resetForm("form");
     },
-    /** 搜索按钮操作 */
+    /**  */
     handleQuery() {
       this.queryParams.pageNum = 1;
       this.getList();
     },
-    /** 重置按钮操作 */
+    /**  */
     resetQuery() {
       this.resetForm("queryForm");
       this.handleQuery();
@@ -249,15 +279,15 @@ export default {
       this.multiple = !selection.length
     },
     handleAttrValue(row){
-      this.$router.push({path:'/goods/goods_category/attribute_value',query:{categoryAttributeId:row.id,categoryAttributeTitle:row.title}});
+      this.$router.push({path:'/goods/goods_category/attribute_value',query:{categoryAttributeId:row.attributeId,categoryAttributeTitle:row.title}});
     },
-    /** 新增按钮操作 */
+
     handleAdd() {
       this.reset();
       this.open = true;
       this.title = "添加商品分类属性";
     },
-    /** 修改按钮操作 */
+
     handleUpdate(row) {
       this.reset();
       const id = row.id || this.ids
@@ -268,7 +298,7 @@ export default {
         this.title = "修改商品分类属性";
       });
     },
-    /** 提交按钮 */
+    /** 提交*/
     submitForm() {
       this.$refs["form"].validate(valid => {
         if (valid) {
@@ -291,7 +321,7 @@ export default {
         }
       });
     },
-    /** 删除按钮操作 */
+
     handleDelete(row) {
       const ids = row.id || this.ids;
       this.$modal.confirm('是否确认删除商品分类属性编号为"' + ids + '"的数据项？').then(function() {

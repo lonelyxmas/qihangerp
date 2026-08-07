@@ -7,9 +7,10 @@ function resolve(dir) {
 
 const CompressionPlugin = require('compression-webpack-plugin')
 
-const name = process.env.VUE_APP_TITLE || '启航牛电商ERP系统' // 网页标题
+const name = process.env.VUE_APP_TITLE || '启航跨境电商系统' // 网页标题
 
-const port = process.env.port || process.env.npm_config_port || 80 // 端口
+const port = process.env.port || process.env.npm_config_port || 88
+// 端口
 
 // vue.config.js 配置说明
 //官方vue.config.js 参考文档 https://cli.vuejs.org/zh/config/#css-loaderoptions
@@ -34,12 +35,30 @@ module.exports = {
     open: true,
     proxy: {
       // detail: https://cli.vuejs.org/config/#devserver-proxy
-      [process.env.VUE_APP_BASE_API]: {
-        target: `http://localhost:8080`,
+      // 按服务前缀直连各微服务，绕过网关路由（网关路由规则尚未适配 /api/sys-api 等新前缀）
+      // 图片上传接口 ImageUploadController 位于 sys-api，但映射到 /api/oms-api 前缀，需置顶优先匹配
+      [process.env.VUE_APP_BASE_API + '/api/oms-api/images/upload']: {
+        target: `http://localhost:8081`,
         changeOrigin: true,
-        pathRewrite: {
-          ['^' + process.env.VUE_APP_BASE_API]: ''
-        }
+        pathRewrite: { ['^' + process.env.VUE_APP_BASE_API]: '' }
+      },
+      // sys-api 服务（登录、验证码、系统管理等）
+      [process.env.VUE_APP_BASE_API + '/api/sys-api']: {
+        target: `http://localhost:8081`,
+        changeOrigin: true,
+        pathRewrite: { ['^' + process.env.VUE_APP_BASE_API]: '' }
+      },
+      // oms-api 服务（订单、商品、库存等）
+      [process.env.VUE_APP_BASE_API + '/api/oms-api']: {
+        target: `http://localhost:8082`,
+        changeOrigin: true,
+        pathRewrite: { ['^' + process.env.VUE_APP_BASE_API]: '' }
+      },
+      // open-api 服务（位于 oms-api：shein、idosell 等开放平台对接）
+      [process.env.VUE_APP_BASE_API + '/api/open-api']: {
+        target: `http://localhost:8082`,
+        changeOrigin: true,
+        pathRewrite: { ['^' + process.env.VUE_APP_BASE_API]: '' }
       }
     },
     disableHostCheck: true

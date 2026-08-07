@@ -28,8 +28,8 @@
         </el-select>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
-        <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">重置</el-button>
+        <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">{{ $t('list.search') }}</el-button>
+        <el-button icon="el-icon-refresh" size="mini" @click="resetQuery">{{ $t('list.reset') }}</el-button>
       </el-form-item>
     </el-form>
 
@@ -95,7 +95,7 @@
           <span>{{ parseTime(scope.row.createTime) }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column :label="$t('menu.operate')" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
             size="mini"
@@ -149,8 +149,8 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="submitForm">确 定</el-button>
-        <el-button @click="cancel">取 消</el-button>
+        <el-button type="primary" @click="submitForm">{{$t('list.submit')}}</el-button>
+        <el-button @click="cancel">{{$t('list.cancel')}}</el-button>
       </div>
     </el-dialog>
   </div>
@@ -172,7 +172,7 @@ export default {
       single: true,
       // 非多个禁用
       multiple: true,
-      // 显示搜索条件
+      //
       showSearch: true,
       // 总条数
       total: 0,
@@ -219,12 +219,12 @@ export default {
         this.loading = false;
       });
     },
-    // 取消按钮
+
     cancel() {
       this.open = false;
       this.reset();
     },
-    // 表单重置
+    //
     reset() {
       this.form = {
         postId: undefined,
@@ -236,12 +236,12 @@ export default {
       };
       this.resetForm("form");
     },
-    /** 搜索按钮操作 */
+    /**  */
     handleQuery() {
       this.queryParams.pageNum = 1;
       this.getList();
     },
-    /** 重置按钮操作 */
+    /**  */
     resetQuery() {
       this.resetForm("queryForm");
       this.handleQuery();
@@ -252,13 +252,13 @@ export default {
       this.single = selection.length!=1
       this.multiple = !selection.length
     },
-    /** 新增按钮操作 */
+
     handleAdd() {
       this.reset();
       this.open = true;
       this.title = "添加岗位";
     },
-    /** 修改按钮操作 */
+
     handleUpdate(row) {
       this.reset();
       const postId = row.postId || this.ids
@@ -268,7 +268,7 @@ export default {
         this.title = "修改岗位";
       });
     },
-    /** 提交按钮 */
+    /** 提交*/
     submitForm: function() {
       this.$refs["form"].validate(valid => {
         if (valid) {
@@ -288,7 +288,7 @@ export default {
         }
       });
     },
-    /** 删除按钮操作 */
+
     handleDelete(row) {
       const postIds = row.postId || this.ids;
       this.$modal.confirm('是否确认删除岗位编号为"' + postIds + '"的数据项？').then(function() {
@@ -298,7 +298,7 @@ export default {
         this.$modal.msgSuccess("删除成功");
       }).catch(() => {});
     },
-    /** 导出按钮操作 */
+    /** 导出 */
     handleExport() {
       this.download('system/post/export', {
         ...this.queryParams

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.qihangerp.module.goods.mapper.OGoodsCategoryMapper">
+
+    <resultMap id="BaseResultMap" type="cn.qihangerp.module.goods.domain.OGoodsCategory">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="number" column="number" jdbcType="VARCHAR"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="remark" column="remark" jdbcType="VARCHAR"/>
+            <result property="parentId" column="parent_id" jdbcType="BIGINT"/>
+            <result property="productTypeId" column="product_type_id" jdbcType="BIGINT"/>
+            <result property="path" column="path" jdbcType="VARCHAR"/>
+            <result property="sort" column="sort" jdbcType="INTEGER"/>
+            <result property="image" column="image" jdbcType="VARCHAR"/>
+            <result property="isDelete" column="is_delete" jdbcType="TINYINT"/>
+            <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateBy" column="update_by" jdbcType="VARCHAR"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,`number`,`name`,product_type_id,
+        remark,parent_id,path,
+        sort,image,is_delete,
+        create_by,create_time,update_by,
+        update_time
+    </sql>
+    <select id="listAndRelation" resultType="cn.qihangerp.module.goods.domain.OGoodsCategory">
+        SELECT cate.*,
+               (
+                   SELECT JSON_ARRAYAGG(
+                                  JSON_OBJECT(
+                                          'shop_platform_id', relation.shop_platform_id,
+                                          'shop_category_id', relation.category_id
+                                  )
+                          )
+                   FROM o_goods_category_relation AS relation
+                   WHERE relation.category_id = cate.id
+               ) AS relations_json
+        FROM o_goods_category AS cate;
+    </select>
+</mapper>

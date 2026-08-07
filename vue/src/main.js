@@ -40,7 +40,9 @@ import DictData from '@/components/DictData'
 
 import Avue from '@smallwei/avue';
 import '@smallwei/avue/lib/index.css';
-
+import Print from 'vue-print-nb'
+import i18n from './lang'
+Vue.use(Print)
 // 全局方法挂载
 Vue.prototype.getDicts = getDicts
 Vue.prototype.getConfigKey = getConfigKey
@@ -75,8 +77,10 @@ DictData.install()
  * please remove it before going online! ! !
  */
 
+// 设置 Element UI 语言
 Vue.use(Element, {
-  size: Cookies.get('size') || 'medium' // set element-ui default size
+  size: Cookies.get('size') || 'medium',
+  i18n: (key, value) => i18n.t(key, value)
 })
 Vue.use(Avue)
 Vue.config.productionTip = false
@@ -85,5 +89,6 @@ new Vue({
   el: '#app',
   router,
   store,
+  i18n,
   render: h => h(App)
 })

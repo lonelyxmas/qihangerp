@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 查询店铺订单列表
 export function listOrder(query) {
   return request({
-    url: '/scm-api/order/list',
+    url: '/api/oms-api/order/list',
     method: 'get',
     params: query
   })
@@ -12,7 +12,7 @@ export function listOrder(query) {
 // 查询店铺订单详细
 export function getOrder(id) {
   return request({
-    url: '/scm-api/order/' + id,
+    url: '/api/oms-api/order/' + id,
     method: 'get'
   })
 }
@@ -20,7 +20,7 @@ export function getOrder(id) {
 // 订单明细list
 export function listOrderItem(query) {
   return request({
-    url: '/scm-api/order/item_list',
+    url: '/api/oms-api/order/item_list',
     method: 'get',
     params: query
   })
@@ -28,7 +28,7 @@ export function listOrderItem(query) {
 
 export function updateErpSkuId(data) {
   return request({
-    url: '/scm-api/order/updateErpSkuId',
+    url: '/api/oms-api/order/updateErpSkuId',
     method: 'post',
     data: data
   })
@@ -42,3 +42,18 @@ export function shipOrder(data) {
   })
 }
 
+export function pushErp(id) {
+  return request({
+    url: '/api/oms-api/order/pushErp/' + id,
+    method: 'post'
+  })
+}
+
+// 新增店铺订单
+export function addOrder(data) {
+  return request({
+    url: '/api/oms-api/order',
+    method: 'post',
+    data: data
+  })
+}

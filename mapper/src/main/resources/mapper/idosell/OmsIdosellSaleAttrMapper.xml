@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.qihangerp.module.open.idosell.mapper.OmsIdosellSaleAttrMapper">
+
+    <resultMap id="BaseResultMap" type="cn.qihangerp.module.open.idosell.domain.OmsIdosellSaleAttr">
+            <id property="attributeId" column="attribute_id" jdbcType="BIGINT"/>
+            <result property="productTypeId" column="product_type_id" jdbcType="BIGINT"/>
+            <result property="attributeName" column="attribute_name" jdbcType="VARCHAR"/>
+            <result property="attributeType" column="attribute_type" jdbcType="INTEGER"/>
+            <result property="attributeLabel" column="attribute_label" jdbcType="INTEGER"/>
+            <result property="attributeStatus" column="attribute_status" jdbcType="INTEGER"/>
+            <result property="attributeMode" column="attribute_mode" jdbcType="INTEGER"/>
+            <result property="attributeIsShow" column="attribute_is_show" jdbcType="INTEGER"/>
+            <result property="omsAttributeId" column="oms_attribute_id" jdbcType="BIGINT"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        attribute_id,product_type_id,attribute_name,
+        attribute_type,attribute_label,attribute_status,
+        attribute_mode,attribute_is_show,create_time,
+        update_time,oms_attribute_id
+    </sql>
+</mapper>

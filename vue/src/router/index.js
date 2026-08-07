@@ -65,10 +65,15 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/index.vue'),
         name: 'Index',
-        meta: { title: '首页', icon: 'dashboard', affix: true }
+        meta: { title: 'dashboard', icon: 'dashboard', affix: true }
       }
     ]
   },
+  // {
+  //   path: '/home',
+  //   component: () => import('@/views/webHome/webHome'),
+  //   hidden: true
+  // },
   {
     path: '/user',
     component: Layout,
@@ -79,10 +84,52 @@ export const constantRoutes = [
         path: 'profile',
         component: () => import('@/views/system/user/profile/index'),
         name: 'Profile',
-        meta: { title: '个人中心', icon: 'user' }
+        meta: { title: 'profile', icon: 'user' }
       }
     ]
-  }
+  },
+  // {
+  //   path: '/shein',
+  //   component: Layout,
+  //   hidden: true,
+  //   children: [
+  //     {
+  //       path: 'goods',
+  //       component: () => import('@/views/shein/goods/index'),
+  //       name: 'GoodsShein',
+  //       meta: { title: 'SHEIN商品管理', icon: 'shopping' }
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/order',
+  //   component: Layout,
+  //   hidden: true,
+  //   children: [
+  //     {
+  //       path: 'shop_order_list',
+  //       component: () => import('@/views/order/shop_order_list'),
+  //       name: 'ShopOrderList',
+  //       meta: { title: '订单列表', icon: 'list' }
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/shop',
+  //   component: Layout,
+  //   hidden: true,
+  //   redirect: '/shop/shop_goods',
+  //   name: 'Shop',
+  //   meta: { title: '商品管理', icon: 'shop' },
+  //   children: [
+  //     {
+  //       path: 'shop_goods',
+  //       name: 'ShopGoods',
+  //       component: () => import('@/views/shop/shop_goods/index'),
+  //       meta: { title: '商品列表', icon: 'list', activeMenu: '/shop/shop_goods' }
+  //     }
+  //   ]
+  // }
 ]
 
 // 动态路由，基于用户权限动态去加载

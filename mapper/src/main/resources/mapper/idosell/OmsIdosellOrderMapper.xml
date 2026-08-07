@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.qihangerp.module.open.idosell.mapper.OmsIdosellOrderMapper">
+
+    <resultMap id="BaseResultMap" type="cn.qihangerp.module.open.idosell.domain.OmsIdosellOrder">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="orderId" column="order_id" jdbcType="VARCHAR"/>
+            <result property="orderSerialNumber" column="order_serial_number" jdbcType="BIGINT"/>
+            <result property="orderType" column="order_type" jdbcType="VARCHAR"/>
+            <result property="clientId" column="client_id" jdbcType="BIGINT"/>
+            <result property="clientLogin" column="client_login" jdbcType="VARCHAR"/>
+            <result property="clientEmail" column="client_email" jdbcType="VARCHAR"/>
+            <result property="clientPhone1" column="client_phone1" jdbcType="VARCHAR"/>
+            <result property="clientPhone2" column="client_phone2" jdbcType="VARCHAR"/>
+            <result property="clientCodeExternal" column="client_code_external" jdbcType="VARCHAR"/>
+            <result property="billingFirstName" column="billing_first_name" jdbcType="VARCHAR"/>
+            <result property="billingLastName" column="billing_last_name" jdbcType="VARCHAR"/>
+            <result property="billingFirm" column="billing_firm" jdbcType="VARCHAR"/>
+            <result property="billingStreet" column="billing_street" jdbcType="VARCHAR"/>
+            <result property="billingCity" column="billing_city" jdbcType="VARCHAR"/>
+            <result property="billingZipCode" column="billing_zip_code" jdbcType="VARCHAR"/>
+            <result property="billingCountryId" column="billing_country_id" jdbcType="VARCHAR"/>
+            <result property="billingCountryName" column="billing_country_name" jdbcType="VARCHAR"/>
+            <result property="billingProvince" column="billing_province" jdbcType="VARCHAR"/>
+            <result property="billingProvinceId" column="billing_province_id" jdbcType="VARCHAR"/>
+            <result property="billingPhone1" column="billing_phone1" jdbcType="VARCHAR"/>
+            <result property="billingPhone2" column="billing_phone2" jdbcType="VARCHAR"/>
+            <result property="billingNip" column="billing_nip" jdbcType="VARCHAR"/>
+            <result property="deliveryAddressId" column="delivery_address_id" jdbcType="BIGINT"/>
+            <result property="deliveryFirstName" column="delivery_first_name" jdbcType="VARCHAR"/>
+            <result property="deliveryLastName" column="delivery_last_name" jdbcType="VARCHAR"/>
+            <result property="deliveryFirm" column="delivery_firm" jdbcType="VARCHAR"/>
+            <result property="deliveryStreet" column="delivery_street" jdbcType="VARCHAR"/>
+            <result property="deliveryCity" column="delivery_city" jdbcType="VARCHAR"/>
+            <result property="deliveryZipCode" column="delivery_zip_code" jdbcType="VARCHAR"/>
+            <result property="deliveryCountryId" column="delivery_country_id" jdbcType="VARCHAR"/>
+            <result property="deliveryCountryName" column="delivery_country_name" jdbcType="VARCHAR"/>
+            <result property="deliveryProvince" column="delivery_province" jdbcType="VARCHAR"/>
+            <result property="deliveryProvinceId" column="delivery_province_id" jdbcType="VARCHAR"/>
+            <result property="deliveryPhone1" column="delivery_phone1" jdbcType="VARCHAR"/>
+            <result property="deliveryPhone2" column="delivery_phone2" jdbcType="VARCHAR"/>
+            <result property="deliveryAddressType" column="delivery_address_type" jdbcType="VARCHAR"/>
+            <result property="deliveryPickupPointInternalId" column="delivery_pickup_point_internal_id" jdbcType="BIGINT"/>
+            <result property="orderStatus" column="order_status" jdbcType="VARCHAR"/>
+            <result property="orderAddDate" column="order_add_date" jdbcType="TIMESTAMP"/>
+            <result property="orderChangeDate" column="order_change_date" jdbcType="TIMESTAMP"/>
+            <result property="orderDispatchDate" column="order_dispatch_date" jdbcType="BIGINT"/>
+            <result property="orderPrepareTime" column="order_prepare_time" jdbcType="INTEGER"/>
+            <result property="clientNoteToCourier" column="client_note_to_courier" jdbcType="VARCHAR"/>
+            <result property="clientNoteToOrder" column="client_note_to_order" jdbcType="VARCHAR"/>
+            <result property="clientRequestInvoice" column="client_request_invoice" jdbcType="CHAR"/>
+            <result property="orderNote" column="order_note" jdbcType="VARCHAR"/>
+            <result property="orderOperatorLogin" column="order_operator_login" jdbcType="VARCHAR"/>
+            <result property="apiFlag" column="api_flag" jdbcType="VARCHAR"/>
+            <result property="productRemovedInStock" column="product_removed_in_stock" jdbcType="CHAR"/>
+            <result property="orderBridgeNote" column="order_bridge_note" jdbcType="VARCHAR"/>
+            <result property="billingCurrency" column="billing_currency" jdbcType="VARCHAR"/>
+            <result property="currencyRate" column="currency_rate" jdbcType="DECIMAL"/>
+            <result property="orderDeliveryCost" column="order_delivery_cost" jdbcType="DECIMAL"/>
+            <result property="orderDeliveryVat" column="order_delivery_vat" jdbcType="DECIMAL"/>
+            <result property="orderInsuranceCost" column="order_insurance_cost" jdbcType="DECIMAL"/>
+            <result property="orderInsuranceVat" column="order_insurance_vat" jdbcType="DECIMAL"/>
+            <result property="orderPayformCost" column="order_payform_cost" jdbcType="DECIMAL"/>
+            <result property="orderPayformVat" column="order_payform_vat" jdbcType="DECIMAL"/>
+            <result property="orderProductsCost" column="order_products_cost" jdbcType="DECIMAL"/>
+            <result property="orderPaymentDays" column="order_payment_days" jdbcType="INTEGER"/>
+            <result property="orderPaymentType" column="order_payment_type" jdbcType="VARCHAR"/>
+            <result property="orderRebatePercent" column="order_rebate_percent" jdbcType="DECIMAL"/>
+            <result property="orderVatExists" column="order_vat_exists" jdbcType="CHAR"/>
+            <result property="orderWorthCalculateType" column="order_worth_calculate_type" jdbcType="VARCHAR"/>
+            <result property="courierId" column="courier_id" jdbcType="BIGINT"/>
+            <result property="courierName" column="courier_name" jdbcType="VARCHAR"/>
+            <result property="courierWebserviceOnly" column="courier_webservice_only" jdbcType="TINYINT"/>
+            <result property="deliveryDate" column="delivery_date" jdbcType="TIMESTAMP"/>
+            <result property="deliveryDateAdditional" column="delivery_date_additional" jdbcType="TIMESTAMP"/>
+            <result property="deliveryPackageId" column="delivery_package_id" jdbcType="VARCHAR"/>
+            <result property="deliveryWeight" column="delivery_weight" jdbcType="INTEGER"/>
+            <result property="estimatedDeliveryDate" column="estimated_delivery_date" jdbcType="TIMESTAMP"/>
+            <result property="sourceOrderId" column="source_order_id" jdbcType="BIGINT"/>
+            <result property="sourceName" column="source_name" jdbcType="VARCHAR"/>
+            <result property="sourceType" column="source_type" jdbcType="VARCHAR"/>
+            <result property="sourceTypeId" column="source_type_id" jdbcType="INTEGER"/>
+            <result property="sourcePageUrl" column="source_page_url" jdbcType="VARCHAR"/>
+            <result property="shopId" column="shop_id" jdbcType="BIGINT"/>
+            <result property="entryProductId" column="entry_product_id" jdbcType="BIGINT"/>
+            <result property="sourceFresh" column="source_fresh" jdbcType="CHAR"/>
+            <result property="sourceFulfillment" column="source_fulfillment" jdbcType="CHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,order_id,order_serial_number,
+        order_type,client_id,client_login,
+        client_email,client_phone1,client_phone2,
+        client_code_external,billing_first_name,billing_last_name,
+        billing_firm,billing_street,billing_city,
+        billing_zip_code,billing_country_id,billing_country_name,
+        billing_province,billing_province_id,billing_phone1,
+        billing_phone2,billing_nip,delivery_address_id,
+        delivery_first_name,delivery_last_name,delivery_firm,
+        delivery_street,delivery_city,delivery_zip_code,
+        delivery_country_id,delivery_country_name,delivery_province,
+        delivery_province_id,delivery_phone1,delivery_phone2,
+        delivery_address_type,delivery_pickup_point_internal_id,order_status,
+        order_add_date,order_change_date,order_dispatch_date,
+        order_prepare_time,client_note_to_courier,client_note_to_order,
+        client_request_invoice,order_note,order_operator_login,
+        api_flag,product_removed_in_stock,order_bridge_note,
+        billing_currency,currency_rate,order_delivery_cost,
+        order_delivery_vat,order_insurance_cost,order_insurance_vat,
+        order_payform_cost,order_payform_vat,order_products_cost,
+        order_payment_days,order_payment_type,order_rebate_percent,
+        order_vat_exists,order_worth_calculate_type,courier_id,
+        courier_name,courier_webservice_only,delivery_date,
+        delivery_date_additional,delivery_package_id,delivery_weight,
+        estimated_delivery_date,source_order_id,source_name,
+        source_type,source_type_id,source_page_url,
+        shop_id,entry_product_id,source_fresh,
+        source_fulfillment,create_time,update_time
+    </sql>
+</mapper>

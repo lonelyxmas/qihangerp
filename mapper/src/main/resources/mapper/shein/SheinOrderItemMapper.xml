@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.qihangerp.module.open.shein.mapper.SheinOrderItemMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.qihangerp.module.open.shein.domain.vo.SheinOrderItem">
+        <id column="id" property="id" />
+        <result column="order_no" property="orderNo" />
+        <result column="goods_id" property="goodsId" />
+        <result column="sku_code" property="skuCode" />
+        <result column="spu_name" property="spuName" />
+        <result column="goods_status" property="goodsStatus" />
+        <result column="seller_currency" property="sellerCurrency" />
+        <result column="seller_currency_price" property="sellerCurrencyPrice" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, order_no, goods_id, sku_code, spu_name, goods_status, seller_currency, seller_currency_price, create_time, update_time
+    </sql>
+
+</mapper>

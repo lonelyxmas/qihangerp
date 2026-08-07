@@ -55,11 +55,18 @@ const permission = {
 // 遍历后台传来的路由字符串，转换为组件对象
 function filterAsyncRouter(asyncRouterMap, lastRouter = false, type = false) {
   return asyncRouterMap.filter(route => {
+    // 转换菜单标题为多语言key
+    if (route.meta && route.meta.title) {
+      // 如果是以斜杠开头的路径，去掉斜杠
+      const path = route.path.replace(/^\/+/, '');
+      route.meta.title = `menu.${path}`;
+    }
+    
     if (type && route.children) {
       route.children = filterChildren(route.children)
     }
     if (route.component) {
-      // Layout ParentView 组件特殊处理
+      // Layout组件特殊处理
       if (route.component === 'Layout') {
         route.component = Layout
       } else if (route.component === 'ParentView') {

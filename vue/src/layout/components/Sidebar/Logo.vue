@@ -6,7 +6,7 @@
         <h1 v-else class="sidebar-title" :style="{ color: sideTheme === 'theme-dark' ? variables.logoTitleColor : variables.logoLightTitleColor }">{{ title }} </h1>
       </router-link>
       <router-link v-else key="expand" class="sidebar-logo-link" to="/">
-        <img v-if="logo" :src="logo" class="sidebar-logo" />
+<!--        <img v-if="logo" :src="logo" class="sidebar-logo" />-->
         <h1 class="sidebar-title" :style="{ color: sideTheme === 'theme-dark' ? variables.logoTitleColor : variables.logoLightTitleColor }">{{ title }} </h1>
       </router-link>
     </transition>
@@ -16,6 +16,7 @@
 <script>
 import logoImg from '@/assets/logo/logo.png'
 import variables from '@/assets/styles/variables.scss'
+import {getConfig} from "@/api/system/config";
 
 export default {
   name: 'SidebarLogo',
@@ -38,6 +39,13 @@ export default {
       title: process.env.VUE_APP_TITLE,
       logo: logoImg
     }
+  },
+  created() {
+    getConfig('sys.name').then(resp=>{
+      if(resp.data){
+        this.title = resp.data.configValue
+      }
+    })
   }
 }
 </script>
