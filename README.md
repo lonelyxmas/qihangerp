@@ -90,16 +90,23 @@
 
 启航电商旗下开源项目矩阵：
 
-| 项目               | 定位                                     | Gitee | GitHub                                                  |
-|:-------------------|:-----------------------------------------|:-----|:--------------------------------------------------------|
-| 启航电商ERP  | **电商业务AI底座（单体应用，v4.1）**     | [Gitee](https://gitee.com/qiliping/qihang-erp-open) | [GitHub](https://github.com/zeasin/qihang-erp-open)     |
-| OMS 订单中台       | 轻量级订单管理                           | [Gitee](https://gitee.com/qiliping/qihang-oms) | [GitHub](https://github.com/zeasin/qihang-oms)          |
-| 启航零售ERP       | 线下零售管理平台                         | [Gitee](https://gitee.com/qiliping/qihang-retail) | [GitHub](https://github.com/zeasin/qihang-retail)          |
-| **启航跨境电商ERP ⬅**   | 跨境电商专用版       | [Gitee](https://gitee.com/qiliping/qihang-cb-erp) | [GitHub](https://github.com/zeasin/qihang-cb-erp)                                          |
+| 项目               | 定位                                     | 官网 | Gitee | GitHub                                                  |
+|:-------------------|:-----------------------------------------|:-----|:-----|:--------------------------------------------------------|
+| 启航电商ERP  | **电商业务AI底座（单体应用，v4.1）**     | [官网](https://qihangerp.cn/open/erp.html) | [Gitee](https://gitee.com/qiliping/qihang-erp-open) | [GitHub](https://github.com/zeasin/qihang-erp-open)     |
+| OMS 订单中台       | 轻量级订单管理                           | [官网](https://qihangerp.cn/open/oms.html) | [Gitee](https://gitee.com/qiliping/qihang-oms) | [GitHub](https://github.com/zeasin/qihang-oms)          |
+| 启航零售ERP       | 线下零售管理平台                         | [官网](https://qihangerp.cn/open/retail-erp.html) | [Gitee](https://gitee.com/qiliping/qihang-retail) | [GitHub](https://github.com/zeasin/qihang-retail)          |
+| **启航跨境电商ERP ⬅**   | 跨境电商专用版       | [官网](https://qihangerp.cn/open/cross-border.html) | [Gitee](https://gitee.com/qiliping/qihang-cb-erp) | [GitHub](https://github.com/zeasin/qihang-cb-erp)                                          |
 
-## 💼 商业版
+## 💼 企业版
 
-👉 **[启航电商ERP企业版](https://qihangerp.cn)**
+👉 **[启航电商ERP企业版](https://qihangerp.cn/)**
+
+## 🔗 相关链接
+
++ [开源版及服务](https://qihangerp.cn/open/)
++ [开源版一键演示包下载](https://qihangerp.cn/open/download.html)
++ [企业版预约演示](https://qihangerp.cn/demo.html)
++ [官网](https://qihangerp.cn/)
 
 
 
